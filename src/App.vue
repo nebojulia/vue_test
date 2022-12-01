@@ -31,11 +31,19 @@ import PostForm from "@/components/PostForm";
 import PostList from "@/components/PostList";
 import MyButton from "@/components/UI/MyButton";
 import MySelect from "@/components/UI/MySelect";
+import MyDialog from "@/components/UI/MyDialog";
+import MyInput from "@/components/UI/MyInput";
 import axios from "axios";
+import { timingSafeEqual } from "crypto";
 
 export default {
     components: {
-        PostList, PostForm, MyButton, MySelect
+        PostList, 
+        PostForm, 
+        MyButton, 
+        MySelect, 
+        MyDialog, 
+        MyInput
     },
     data() {
         return {
@@ -77,8 +85,10 @@ export default {
     },
     watch: {
         selectedSort(newValue) {
-            
-        }
+            this.posts.sort((post1, post2) => {
+                return post1[newValue]?.localeCompare(post2[newValue])
+            })
+        },
     }
 }
 </script>
