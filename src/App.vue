@@ -9,6 +9,7 @@
             </my-button>
             <my-select
                 v-model="selectedSort"
+                :options="sortOptions"
             />
         </div>
         <my-dialog v-model:show="dialogVisible">
@@ -41,7 +42,11 @@ export default {
             posts: [],
             dialogVisible: false,
             isPostLoading: false,
-            selectedSort: ''
+            selectedSort: '',
+            sortOptions: [
+                {value: 'title', name: 'По названию'},
+                {value: 'body', name: 'По содержимому'}
+            ]
         }
     },
     methods: {
@@ -69,6 +74,11 @@ export default {
     },
     mounted() {
         this.fetchPosts();
+    },
+    watch: {
+        selectedSort(newValue) {
+            
+        }
     }
 }
 </script>
